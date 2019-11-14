@@ -17,7 +17,7 @@ class Call extends Model
     ];
 
     protected $appends=[
-        'status_name','date_form'
+        'status_name','date_form','team_name'
     ];
 
     public function getDateFormAttribute(){
@@ -28,8 +28,16 @@ class Call extends Model
         return $this->status->name;
     }
 
+    public function getTeamNameAttribute(){
+        return $this->team->name;
+    }
+
     public function status(){
         return $this->belongsTo('App\Status')->withDefault();
+    }
+
+    public function team(){
+        return $this->belongsTo('App\Team')->withDefault();
     }
 
     public function competitions(){
